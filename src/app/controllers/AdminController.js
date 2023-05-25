@@ -15,13 +15,13 @@ class AdminController {
     login(req, res) {
         const data = req.body;
 
-        console.log('Dữ liệu login được từ app: ', data);
+        console.log('Dữ liệu login được từ app ', data);
 
         const email = data.email?.toLowerCase();
 
         const password = data.password;
         if (
-            email == process.env.ADMIN_ACCOUNT_NAME ||
+            email == process.env.ADMIN_ACCOUNT_NAME &&
             password == process.env.ADMIN_ACCOUNT_PASSWORD
         ) {
             const token = Token.createToken(data);
@@ -38,7 +38,7 @@ class AdminController {
             res.header('Access-Control-Allow-Origin', '*');
 
             res.status(400).json({
-                msg: 'Tài khoản mật khẩu sai',
+                msg: 'Account invalid!!!',
             });
         }
     }
