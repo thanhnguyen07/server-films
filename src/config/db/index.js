@@ -1,5 +1,7 @@
 const dotenv = require('dotenv');
 
+dotenv.config();
+
 const mongoose = require('mongoose');
 
 const username = encodeURIComponent(process.env.MONGODB_ACCOUNT_NAME);

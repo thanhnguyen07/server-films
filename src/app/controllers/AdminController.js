@@ -1,6 +1,9 @@
 const Film = require('../models/Film');
 const User = require('../models/User');
 const Token = require('../../utils/token');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 class AdminController {
     data(req, res) {
@@ -17,7 +20,10 @@ class AdminController {
         const email = data.email?.toLowerCase();
 
         const password = data.password;
-        if (email === 'admin' || password === '123456tT@') {
+        if (
+            email == process.env.ADMIN_ACCOUNT_NAME ||
+            password == process.env.ADMIN_ACCOUNT_PASSWORD
+        ) {
             const token = Token.createToken(data);
             const resUser = {
                 token: token,
