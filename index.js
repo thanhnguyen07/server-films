@@ -1,19 +1,21 @@
 const path = require('path');
 const express = require('express');
-require('dotenv').config()
+require('dotenv').config();
 const app = express();
 const route = require('./src/routes');
 const methodOverride = require('method-override');
 const fs = require('fs');
 const cors = require('cors');
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 
-const corsOptions ={
-   origin:'*', 
-   credentials:true,
-   optionSuccessStatus:200,
-}
-app.use(cors(corsOptions))
+// const corsOptions = {
+//     origin: '*',
+//     credentials: true,
+//     optionSuccessStatus: 200,
+// };
+
+// app.use(cors(corsOptions));
+app.use(cors());
 // Connect DB
 const db = require('./src/config/db');
 db.connect();
@@ -67,9 +69,9 @@ app.use(methodOverride('_method'));
 //     }
 // });
 
-app.get("/", (req, res) => {
-    res.send('SERVER ON')
-})
+app.get('/', (req, res) => {
+    res.send('SERVER ON');
+});
 
 route(app);
 
