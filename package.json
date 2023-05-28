@@ -8,7 +8,7 @@
     },
     "scripts": {
         "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
-        "start": "nod index.js",
+        "start": "node index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
