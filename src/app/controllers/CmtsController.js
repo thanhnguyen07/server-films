@@ -46,6 +46,26 @@ class CmtsController {
                 console.log('-----------------------------------');
             });
     }
+    dataall(req, res) {
+        console.log('-----------------------------------');
+        console.log('| [GET] /cmts/dataall ');
+        Cmts.find({}, function (err, cmts) {
+            res.status(200).send(cmts);
+        });
+        console.log('-----------------------------------');
+    }
+    delete(req, res) {
+        const id = req.body.id;
+        console.log('-----------------------------------');
+        console.log('| POST] /cmts/delete ');
+        console.log('| ID cmts: ', id);
+        console.log('-----------------------------------');
+        Cmts.deleteOne({ _id: id })
+            .then(() => {
+                res.status(200).json(true);
+            })
+            .catch(err => console.log(err));
+    }
 }
 
 module.exports = new CmtsController();

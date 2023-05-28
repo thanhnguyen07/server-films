@@ -95,6 +95,61 @@ class AdminController {
             })
             .catch(err => console.log(err));
     }
+    deleteuser(req, res) {
+        console.log('-----------------------------------');
+        console.log('| [GET] /admin/deleteuser ');
+        console.log('-----------------------------------');
+        const data = req.body;
+        User.deleteOne({_id: data.userId})
+            .then(() => {
+                res.redirect('/films');
+                res.status(200).json(true);
+            })
+            .catch(err => {});
+    }
+    userdata(req, res) {
+        console.log('-----------------------------------');
+        console.log('| [GET] /admin/userdata ');
+        User.find({}, function (err, user) {
+            res.status(200).send(user);
+        });
+        console.log('-----------------------------------');
+    }
+    updateuser(req, res) {
+        const data = req.body.data;
+        const idUser = req.body.idUser;
+        console.log('-----------------------------------');
+        console.log('| POST] /admin/update ');
+        console.log('-----------------------------------');
+        User.updateOne({_id: idUser}, data)
+            .then(film => {
+                res.status(200).json(film);
+            })
+            .catch(err => console.log(err));
+    }
+    getProfile(req, res) {
+        const data = req.body;
+        console.log('Dữ liệu login được từ app: ', data);
+        User.findOne({_id: data.userId}, (err, user) => {
+            if (user !== null) {
+                const customeResUser = user.toObject();
+                const resUser = {
+                    ...customeResUser,
+                    // token: token,
+                    // refreshToken: refreshToken,
+                    msg: 'Get Profile Success',
+                };
+
+                res.status(200).json({
+                    ...resUser,
+                });
+            } else {
+                res.status(400).json({
+                    msg: 'Không tìm thấy thông tin user',
+                });
+            }
+        });
+    }
 }
 
 module.exports = new AdminController();

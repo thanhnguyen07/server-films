@@ -90,6 +90,41 @@ class FilmsController {
             })
             .catch(err => console.log(err));
     }
+    update(req, res) {
+        const data = req.body.data;
+        const idFilm = req.body.idFilm;
+        console.log('-----------------------------------');
+        console.log('| POST] /films/update ');
+        console.log('-----------------------------------');
+        Film.updateOne({_id: idFilm}, data)
+            .then(film => {
+                res.status(200).json(film);
+            })
+            .catch(err => console.log(err));
+    }
+    delete(req, res) {
+        const idFilm = req.body.idFilm;
+        console.log('-----------------------------------');
+        console.log('| POST] /films/delete ');
+        console.log('| ID Films: ', idFilm);
+        console.log('-----------------------------------');
+        Film.deleteOne({_id: idFilm})
+            .then(() => {
+                res.status(200).json(true);
+            })
+            .catch(err => console.log(err));
+    }
+    create(req, res) {
+        const data = req.body;
+        console.log('-----------------------------------');
+        console.log('| POST] /films/create ');
+        console.log('-----------------------------------');
+        const createFilms = new Film(data);
+        createFilms.save().then(() => {
+            res.status(200).json(true);
+        });
+    }
+
 }
 
 module.exports = new FilmsController();
