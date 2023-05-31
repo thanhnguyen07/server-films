@@ -3,9 +3,6 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
-    "engines": {
-        "node": "18.x"
-    },
     "scripts": {
         "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
         "start": "node index.js",
