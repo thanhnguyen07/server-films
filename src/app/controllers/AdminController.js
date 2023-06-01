@@ -65,13 +65,6 @@ class AdminController {
             .catch(() => {});
     }
     // [DELETE] /films/:_id
-    delete(req, res) {
-        Film.deleteOne({_id: req.params._id})
-            .then(() => {
-                res.redirect('/films');
-            })
-            .catch(err => {});
-    }
     deleteuser(req, res) {
         console.log('-----------------------------------');
         console.log('| [GET] /admin/deleteuser ');
@@ -79,7 +72,6 @@ class AdminController {
         const data = req.body;
         User.deleteOne({_id: data.userId})
             .then(() => {
-                res.redirect('/films');
                 res.status(200).json(true);
             })
             .catch(err => {});
