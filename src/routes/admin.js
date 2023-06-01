@@ -5,9 +5,6 @@ const token = require('../utils/token');
 
 router.get('/', adminController.Films);
 router.post('/login', adminController.login);
-router.get('/users', adminController.viewUsers);
-router.get('/:_id', adminController.details);
-router.post('/store', adminController.store);
 router.post('/deleteuser', token.authenToken, adminController.deleteuser);
 router.get('/userdata', token.authenToken, adminController.userdata);
 router.post('/getdatauser', token.authenToken, adminController.getProfile);

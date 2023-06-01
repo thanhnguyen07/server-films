@@ -53,9 +53,6 @@ class AdminController {
             })
             .catch(err => console.log(err));
     }
-    create(req, res) {
-        res.render('films/create');
-    }
     // [POST] /films/store
     // Create film web
     store(req, res) {
@@ -67,16 +64,6 @@ class AdminController {
             })
             .catch(() => {});
     }
-    // [GET] /films/:id
-    // View details film web
-    details(req, res) {
-        Film.find({_id: req.params._id}, (err, film) => {
-            film = film.map(film => film.toObject());
-            res.render('films/details', {
-                film,
-            });
-        });
-    }
     // [DELETE] /films/:_id
     delete(req, res) {
         Film.deleteOne({_id: req.params._id})
@@ -84,16 +71,6 @@ class AdminController {
                 res.redirect('/films');
             })
             .catch(err => {});
-    }
-    viewUsers(req, res) {
-        User.find({})
-            .then(user => {
-                user = user.map(user => user.toObject());
-                res.render('Users', {
-                    user,
-                });
-            })
-            .catch(err => console.log(err));
     }
     deleteuser(req, res) {
         console.log('-----------------------------------');
