@@ -2,6 +2,7 @@ const usersRouter = require('./users');
 const filmsRouter = require('./films');
 const cmtsRouter = require('./cmts');
 const adminRouter = require('./admin');
+const testRouter = require('./test');
 
 function route(app) {
     app.use('/users', usersRouter);
@@ -11,5 +12,7 @@ function route(app) {
     app.use('/admin', adminRouter);
 
     app.use('/cmts', cmtsRouter);
+
+    app.use('/test', testRouter);
 }
 module.exports = route;
